@@ -1,0 +1,44 @@
+body{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+#map {
+    width: 100%;
+    max-width: 800px;
+    height: auto;
+}
+
+#info {
+    margin-top: 20px;
+    padding: 10px;
+    border: 1px solid #ccc;
+    min-height: 50px;
+}
+
+#calendar{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    width: 70%;
+}
+
+.calendar-month{
+    border: 1px solid #ccc;
+    margin: 10px 0;
+}
+
+.calendar-day{
+    text-align: center;
+    padding: 3px;
+}
+
+.calendar-day-empty{
+    border: none;
+}
+
+.calendar-day-weekend{
+    background-color: #b3d1ff;
+}

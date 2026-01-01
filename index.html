@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="ro">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <link rel="stylesheet" href="assets/style.css" />
+</head>
+
+<body>
+    <h1 id="calendar-title"></h1>
+    <object id="map" data="assets/RO.svg" type="image/svg+xml"></object>
+    <div id="info">Selectează un județ pentru informații.</div>
+    <div id="calendar">
+    </div>
+
+    <script type="module">
+      import {SchoolCalendar} from './assets/school-calendar.js';
+
+
+      document.addEventListener("DOMContentLoaded", function () {
+          const calendarDisplay=new SchoolCalendar("calendar-title", "map", "calendar");
+          calendarDisplay.initialize();
+        });
+
+    </script>
+</body>
+
+</html>
