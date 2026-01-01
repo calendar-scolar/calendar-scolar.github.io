@@ -86,8 +86,6 @@ export class MapDisplay {
         const postalCode = data.postal_ro.value;
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(postalCode);
-        const name = localizedNames.get(postalCode);
-        console.debug(`Cliked on ${postalCode} -- ${name}`);
       });
     });
   }
@@ -115,13 +113,6 @@ export class MapDisplay {
         const target = e.target;
         target.style.cursor = "default";
         target.style.opacity = 1;
-      });
-
-      unit.addEventListener("click", function () {
-        const data = this.attributes;
-        const postalCode = data.postal.value;
-        const name = localizedNames.get(postalCode);
-        console.debug(`Cliked on ${postalCode} -- ${name}`);
       });
     });
   }

@@ -13,7 +13,6 @@ export class CalendarDisplay {
     const schoolCalendar =
       this.dataService.getAdministrativeUnitData(postalCode);
 
-    console.debug(schoolCalendar);
     for (const day of calendarDays) {
       if (!day.dataset.date) {
         continue;
