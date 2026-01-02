@@ -23,7 +23,7 @@ export class DataService {
     return this.getStartYear() + 1;
   }
 
-  getAdministrativeUnitData(postalCode) {
+  getAdministrativeUnitData(postalCode, dateFormat) {
     const data = SchoolYear.calendar
       .filter((x) => {
         const unitCodes = x.unitCodes;
@@ -38,7 +38,7 @@ export class DataService {
         var end = new Date(period.end);
         const result = [];
         while (date <= end) {
-          result.push([date.toLocaleDateString(), period.color]);
+          result.push([dateFormat(date), period.color]);
           date.setDate(date.getDate() + 1);
         }
         return result;

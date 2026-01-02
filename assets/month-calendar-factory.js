@@ -1,4 +1,5 @@
-import { CSSClasses } from "./constants.js";
+import { CSSClasses } from "./calendar-utils.js";
+import { toISOShortDate } from "./calendar-utils.js";
 
 export class MonthCalendarFactory {
   // Month starts from 1, e.g.: `const calendar = new MonthCalendar(12, 2025);`
@@ -110,7 +111,7 @@ export class MonthCalendarFactory {
     }
 
     td.textContent = `${date.getDate()}`;
-    td.dataset.date = date.toLocaleDateString();
+    td.dataset.date = toISOShortDate(date);
 
     return td;
   }

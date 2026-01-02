@@ -1,5 +1,6 @@
 import { DataService } from "./data/data-services.js";
-import { CSSClasses } from "./constants.js";
+import { CSSClasses } from "./calendar-utils.js";
+import { toISOShortDate } from "./calendar-utils.js";
 
 export class CalendarDisplay {
   constructor() {
@@ -10,8 +11,10 @@ export class CalendarDisplay {
     const calendarDays = document.getElementsByClassName(
       CSSClasses.calendarDay,
     );
-    const schoolCalendar =
-      this.dataService.getAdministrativeUnitData(postalCode);
+    const schoolCalendar = this.dataService.getAdministrativeUnitData(
+      postalCode,
+      toISOShortDate,
+    );
 
     for (const day of calendarDays) {
       if (!day.dataset.date) {
