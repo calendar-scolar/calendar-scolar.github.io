@@ -1,5 +1,5 @@
 import { CSSClasses } from "./calendar-utils.js";
-import { toISOShortDate } from "./calendar-utils.js";
+import { toISOShortDate, isWeekend, getWeekDay } from "./calendar-utils.js";
 
 export class MonthCalendarFactory {
   // Month starts from 1, e.g.: `const calendar = new MonthCalendar(12, 2025);`
@@ -63,7 +63,7 @@ export class MonthCalendarFactory {
     var tr = tBody.appendChild(document.createElement("tr"));
 
     var currentDate = startDate;
-    const startWeekday = this.#getWeekDay(currentDate);
+    const startWeekday = getWeekDay(currentDate);
     var currentWeekDay = 0;
     while (
       currentWeekDay < this.weekDays.length &&
@@ -89,14 +89,6 @@ export class MonthCalendarFactory {
     return currentDate;
   }
 
-  #getWeekDay(date) {
-    let day = date.getDay();
-    if (day === 0) {
-      return 6;
-    }
-    return day - 1;
-  }
-
   #createCalendarDayCell(parentRow, date) {
     let td = parentRow.appendChild(document.createElement("td"));
     td.classList.add(CSSClasses.calendarDay);
@@ -106,7 +98,7 @@ export class MonthCalendarFactory {
       return td;
     }
 
-    if (this.#isWeekend(date)) {
+    if (isWeekend(date)) {
       td.classList.add(CSSClasses.calendarDayWeekend);
     }
 
@@ -114,9 +106,5 @@ export class MonthCalendarFactory {
     td.dataset.date = toISOShortDate(date);
 
     return td;
-  }
-
-  #isWeekend(date) {
-    return this.#getWeekDay(date) > 4;
   }
 }

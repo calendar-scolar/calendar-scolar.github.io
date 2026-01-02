@@ -1,6 +1,6 @@
 import { DataService } from "./data/data-services.js";
 import { CSSClasses } from "./calendar-utils.js";
-import { toISOShortDate } from "./calendar-utils.js";
+import { toISOShortDate, isWeekend } from "./calendar-utils.js";
 
 export class CalendarDisplay {
   constructor() {
@@ -34,7 +34,6 @@ export class CalendarDisplay {
 
   #isWeekend(day) {
     const date = new Date(day.dataset.date);
-    const weekDay = date.getDay();
-    return weekDay === 0 || weekDay === 6;
+    return isWeekend(date);
   }
 }
