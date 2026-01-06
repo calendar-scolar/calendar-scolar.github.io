@@ -24,26 +24,39 @@ export class DataService {
   }
 
   getAdministrativeUnitData(postalCode, dateFormat) {
-    const data = SchoolYear.calendar
+    const data = this.#getSortedIntervals(postalCode).flatMap((period) => {
+      var date = new Date(period.start);
+      var end = new Date(period.end);
+      const result = [];
+      while (date <= end) {
+        result.push([dateFormat(date), period.color]);
+        date.setDate(date.getDate() + 1);
+      }
+      return result;
+    });
+    const map = new Map(data);
+    return map;
+  }
+
+  getAdministrativeUnitLegend(postalCode) {
+    const data = this.#getSortedIntervals(postalCode).map((period) => {
+      return { color: period.color, name: period.name };
+    });
+    return data;
+  }
+
+  #getSortedIntervals(postalCode) {
+    return SchoolYear.calendar
       .filter((x) => {
         const unitCodes = x.unitCodes;
         if (!unitCodes) {
           return true;
         }
-        return unitCodes.includes(postalCode);
+        return unitCodes
+          .split(",")
+          .map((code) => code.trim())
+          .includes(postalCode);
       })
-      .toSorted((a, b) => a.start.localeCompare(b.start))
-      .flatMap((period) => {
-        var date = new Date(period.start);
-        var end = new Date(period.end);
-        const result = [];
-        while (date <= end) {
-          result.push([dateFormat(date), period.color]);
-          date.setDate(date.getDate() + 1);
-        }
-        return result;
-      });
-    const map = new Map(data);
-    return map;
+      .toSorted((a, b) => a.start.localeCompare(b.start));
   }
 }
