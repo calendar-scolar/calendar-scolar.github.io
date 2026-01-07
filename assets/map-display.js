@@ -2,52 +2,6 @@ import { DataService } from "./data/data-services.js";
 import { CalendarDisplay } from "./calendar-display.js";
 import { LegendDisplay } from "./legend-display.js";
 
-const localizedNames = new Map([
-  ["AB", "Alba"],
-  ["AG", "Argeș"],
-  ["AR", "Arad"],
-  ["BC", "Bacău"],
-  ["BH", "Bihor"],
-  ["B", "București"],
-  ["BI", "București"],
-  ["BN", "Bistrița-Năsăud"],
-  ["BR", "Brăila"],
-  ["BT", "Botoșani"],
-  ["BV", "Brașov"],
-  ["BZ", "Buzău"],
-  ["CJ", "Cluj"],
-  ["CL", "Călărași"],
-  ["CS", "Caraș-Severin"],
-  ["CT", "Constanța"],
-  ["CV", "Covasna"],
-  ["DB", "Dâmbovița"],
-  ["DJ", "Dolj"],
-  ["GJ", "Gorj"],
-  ["GL", "Galați"],
-  ["GR", "Giurgiu"],
-  ["HD", "Hunedoara"],
-  ["HR", "Harghita"],
-  ["IF", "Ilfov"],
-  ["IL", "Ialomița"],
-  ["IS", "Iași"],
-  ["MH", "Mehedinți"],
-  ["MM", "Maramureș"],
-  ["MS", "Mureș"],
-  ["NT", "Neamț"],
-  ["OT", "Olt"],
-  ["PH", "Prahova"],
-  ["SB", "Sibiu"],
-  ["SJ", "Sălaj"],
-  ["SM", "Satu Mare"],
-  ["SV", "Suceava"],
-  ["TL", "Tulcea"],
-  ["TM", "Timiș"],
-  ["TR", "Teleorman"],
-  ["VL", "Vâlcea"],
-  ["VN", "Vrancea"],
-  ["VS", "Vaslui"],
-]);
-
 const postalCodesMap = new Map([["BI", "B"]]);
 
 export class MapDisplay {
@@ -65,7 +19,7 @@ export class MapDisplay {
       const postalCode = this.#getPostalCode(unit);
       unit.setAttribute("postal_ro", postalCode);
       unit.setAttribute("legend_id", this.legendId);
-      unit.setAttribute("name_ro", localizedNames.get(postalCode));
+
       const color = adminUnitsColors.get(postalCode);
       if (color) {
         unit.style.fill = color;
@@ -91,7 +45,7 @@ export class MapDisplay {
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(postalCode);
         const legendDisplay = new LegendDisplay(data.legend_id.value);
-        legendDisplay.initialize(postalCode, data.name_ro.value);
+        legendDisplay.initialize(postalCode);
       });
     });
   }

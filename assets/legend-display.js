@@ -1,5 +1,6 @@
-import { DataService } from "./data/data-services.js";
 import { CSSClasses } from "./calendar-utils.js";
+import { DataService } from "./data/data-services.js";
+import { LocalizationService } from "./localization.js";
 
 export class LegendDisplay {
   constructor(legendId) {
@@ -7,13 +8,14 @@ export class LegendDisplay {
     this.dataService = new DataService();
   }
 
-  initialize(postalCode, name) {
+  initialize(postalCode) {
     this.container.innerText = "";
-    const strategy = new LegendTableFactory(
+    const factory = new LegendTableFactory(
       this.container,
       this.#loadData(postalCode),
     );
-    strategy.create(`Calendarul școlar pentru județul ${name}.`);
+    const caption = LocalizationService.getLegendCaption(postalCode);
+    factory.create(caption);
   }
 
   #loadData(postalCode) {

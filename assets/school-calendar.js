@@ -1,6 +1,7 @@
 import { DataService } from "./data/data-services.js";
 import { MonthCalendarFactory } from "./month-calendar-factory.js";
 import { MapDisplay } from "./map-display.js";
+import { LocalizationService } from "./localization.js";
 
 export class SchoolCalendar {
   constructor(
@@ -19,8 +20,14 @@ export class SchoolCalendar {
   }
 
   initialize() {
-    document.title = `Calendar școlar ${this.startYear} - ${this.endYear}`;
-    this.titleElement.innerHTML = `Calendar școlar ${this.startYear} &ndash; ${this.endYear}`;
+    document.title = LocalizationService.getDocumentTitle(
+      this.startYear,
+      this.endYear,
+    );
+    this.titleElement.innerHTML = LocalizationService.getCalendarTitle(
+      this.startYear,
+      this.endYear,
+    );
     for (let i = 9; i <= 12; i++) {
       const calendarFactory = new MonthCalendarFactory(i, this.startYear);
       this.containerElement.appendChild(calendarFactory.create());
