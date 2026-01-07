@@ -11,28 +11,28 @@ export const SchoolYear = {
       start: "2025-09-08",
       end: "2025-10-24",
       name: "Modulul 1",
-      color: "#3498db", // Soft Blue
+      color: "#3498db",
     },
     {
       type: "vacation",
       start: "2025-10-27",
       end: "2025-10-31",
       name: "Vacanța de toamnă",
-      color: "#e74c3c", // Soft Red
+      color: "#e74c3c",
     },
     {
       type: "module",
       start: "2025-11-03",
       end: "2025-12-19",
       name: "Modulul 2",
-      color: "#2ecc71", // Soft Green
+      color: "#2ecc71",
     },
     {
       type: "vacation",
       start: "2025-12-22",
       end: "2026-01-07",
       name: "Vacanța de iarnă",
-      color: "#f39c12", // Soft Orange
+      color: "#f39c12",
     },
     {
       type: "module",
@@ -40,7 +40,7 @@ export const SchoolYear = {
       end: "2026-02-08",
       name: "Modulul 3",
       unitCodes: "BN, CJ, TM",
-      color: "#9b59b6", // Soft Purple
+      color: "#7f8c8d",
     },
     {
       type: "vacation",
@@ -56,7 +56,7 @@ export const SchoolYear = {
       end: "2026-04-03",
       name: "Modulul 4",
       unitCodes: "BN, CJ, TM",
-      color: "#1abc9c", // Soft Teal
+      color: "#55efc4",
     },
     {
       type: "module",
@@ -65,7 +65,7 @@ export const SchoolYear = {
       name: "Modulul 3",
       unitCodes:
         "AR, AG, BH, BV, B, BZ, CL, CS, DB, DJ, GJ, HD, IL, IS, IF, MH, OT, PH, SJ, TR, TL, VL",
-      color: "#d35400", // Soft Dark Orange
+      color: "#7f8c8d",
     },
     {
       type: "vacation",
@@ -83,7 +83,7 @@ export const SchoolYear = {
       name: "Modulul 4",
       unitCodes:
         "AR, AG, BH, BV, B, BZ, CL, CS, DB, DJ, GJ, HD, IL, IS, IF, MH, OT, PH, SJ, TR, TL, VL",
-      color: "#34495e", // Soft Dark Blue
+      color: "#55efc4",
     },
     {
       type: "module",
@@ -92,7 +92,7 @@ export const SchoolYear = {
       name: "Modulul 3",
       unitCodes:
         "AB, BC, BT, BR, CT, CV, GL, GR, HG, HR, MM, MS, NT, SM, SB, SV, VS, VN",
-      color: "#7f8c8d", // Soft Gray
+      color: "#7f8c8d",
     },
     {
       type: "vacation",
@@ -110,21 +110,21 @@ export const SchoolYear = {
       name: "Modulul 4",
       unitCodes:
         "AB, BC, BT, BR, CT, CV, GL, GR, HG, HR, MM, MS, NT, SM, SB, SV, VS, VN",
-      color: "#55efc4", // Soft Light Teal
+      color: "#55efc4",
     },
     {
       type: "vacation",
       start: "2026-04-06",
       end: "2026-04-14",
       name: "Vacanța de primăvară",
-      color: "#e1bc29", // Soft Yellow
+      color: "#e1bc29",
     },
     {
       type: "module",
       start: "2026-04-15",
       end: "2026-06-19",
       name: "Modulul 5",
-      color: "#8e44ad", // Soft Dark Purple
+      color: "#8e44ad",
     },
   ],
 };
