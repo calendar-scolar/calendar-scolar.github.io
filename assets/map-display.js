@@ -81,7 +81,6 @@ class AdministrativeUnit {
 
   static isSelected(unit) {
     const selected = Boolean(unit.getAttribute("selected"));
-    console.log(`Is selected: ${selected}.`);
     return selected;
   }
 
