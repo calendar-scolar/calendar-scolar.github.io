@@ -54,7 +54,6 @@ export class MapDisplay {
   constructor(mapId, legendId) {
     this.map = document.getElementById(mapId);
     this.legendId = legendId;
-    this.map.addEventListener("load", this.#onMapLoaded);
     this.dataService = new DataService();
   }
 
@@ -65,7 +64,7 @@ export class MapDisplay {
     adminUnits.forEach((unit) => {
       const postalCode = this.#getPostalCode(unit);
       unit.setAttribute("postal_ro", postalCode);
-      unit.setAttribute("legendId", this.legendId);
+      unit.setAttribute("legend_id", this.legendId);
       unit.setAttribute("name_ro", localizedNames.get(postalCode));
       const color = adminUnitsColors.get(postalCode);
       if (color) {
@@ -91,7 +90,7 @@ export class MapDisplay {
         const postalCode = data.postal_ro.value;
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(postalCode);
-        const legendDisplay = new LegendDisplay(data.legendId.value);
+        const legendDisplay = new LegendDisplay(data.legend_id.value);
         legendDisplay.initialize(postalCode, data.name_ro.value);
       });
     });
@@ -105,22 +104,5 @@ export class MapDisplay {
       return normalizedPostalCode;
     }
     return postalCode;
-  }
-
-  #onMapLoaded() {
-    // const svgDoc = this.contentDocument;
-    // const adminUnits = svgDoc.querySelectorAll("path");
-    // adminUnits.forEach((unit) => {
-    //   unit.addEventListener("mousemove", (e) => {
-    //     const target = e.target;
-    //     target.style.opacity = 0.7;
-    //     target.style.cursor = "pointer";
-    //   });
-    //   unit.addEventListener("mouseout", (e) => {
-    //     const target = e.target;
-    //     target.style.cursor = "default";
-    //     target.style.opacity = 1;
-    //   });
-    // });
   }
 }
