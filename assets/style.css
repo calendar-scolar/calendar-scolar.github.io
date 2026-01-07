@@ -54,3 +54,21 @@ body{
 .legend-item-text{
     font-size: small;
 }
+
+@media screen and (width < 800px){
+    #calendar-title{
+        font-size: smaller;
+    }
+
+    #info{
+        font-size: smaller;
+    }
+
+    .legend-caption{
+        font-size: smaller;
+    }
+
+    .legend-item-label{
+        padding: 0px;
+    }
+}
