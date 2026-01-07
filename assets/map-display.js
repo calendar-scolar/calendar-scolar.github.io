@@ -1,5 +1,6 @@
 import { DataService } from "./data/data-services.js";
 import { CalendarDisplay } from "./calendar-display.js";
+import { LegendDisplay } from "./legend-display.js";
 
 const localizedNames = new Map([
   ["AB", "Alba"],
@@ -7,6 +8,7 @@ const localizedNames = new Map([
   ["AR", "Arad"],
   ["BC", "Bacău"],
   ["BH", "Bihor"],
+  ["B", "București"],
   ["BI", "București"],
   ["BN", "Bistrița-Năsăud"],
   ["BR", "Brăila"],
@@ -49,8 +51,9 @@ const localizedNames = new Map([
 const postalCodesMap = new Map([["BI", "B"]]);
 
 export class MapDisplay {
-  constructor(mapId) {
+  constructor(mapId, legendId) {
     this.map = document.getElementById(mapId);
+    this.legendId = legendId;
     this.map.addEventListener("load", this.#onMapLoaded);
     this.dataService = new DataService();
   }
@@ -62,6 +65,8 @@ export class MapDisplay {
     adminUnits.forEach((unit) => {
       const postalCode = this.#getPostalCode(unit);
       unit.setAttribute("postal_ro", postalCode);
+      unit.setAttribute("legendId", this.legendId);
+      unit.setAttribute("name_ro", localizedNames.get(postalCode));
       const color = adminUnitsColors.get(postalCode);
       if (color) {
         unit.style.fill = color;
@@ -86,6 +91,8 @@ export class MapDisplay {
         const postalCode = data.postal_ro.value;
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(postalCode);
+        const legendDisplay = new LegendDisplay(data.legendId.value);
+        legendDisplay.initialize(postalCode, data.name_ro.value);
       });
     });
   }
@@ -101,19 +108,19 @@ export class MapDisplay {
   }
 
   #onMapLoaded() {
-    const svgDoc = this.contentDocument;
-    const adminUnits = svgDoc.querySelectorAll("path");
-    adminUnits.forEach((unit) => {
-      unit.addEventListener("mousemove", (e) => {
-        const target = e.target;
-        target.style.opacity = 0.7;
-        target.style.cursor = "pointer";
-      });
-      unit.addEventListener("mouseout", (e) => {
-        const target = e.target;
-        target.style.cursor = "default";
-        target.style.opacity = 1;
-      });
-    });
+    // const svgDoc = this.contentDocument;
+    // const adminUnits = svgDoc.querySelectorAll("path");
+    // adminUnits.forEach((unit) => {
+    //   unit.addEventListener("mousemove", (e) => {
+    //     const target = e.target;
+    //     target.style.opacity = 0.7;
+    //     target.style.cursor = "pointer";
+    //   });
+    //   unit.addEventListener("mouseout", (e) => {
+    //     const target = e.target;
+    //     target.style.cursor = "default";
+    //     target.style.opacity = 1;
+    //   });
+    // });
   }
 }

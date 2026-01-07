@@ -42,3 +42,15 @@ body{
 .calendar-day-weekend{
     background-color: #b3d1ff;
 }
+
+.legend-caption{
+    margin-bottom: 15px;
+}
+
+.legend-item-label{
+    padding: 0px 10px;
+}
+
+.legend-item-text{
+    font-size: small;
+}

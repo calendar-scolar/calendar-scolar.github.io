@@ -3,14 +3,19 @@ import { MonthCalendarFactory } from "./month-calendar-factory.js";
 import { MapDisplay } from "./map-display.js";
 
 export class SchoolCalendar {
-  constructor(titleElementId, mapElementId, containerElementId) {
+  constructor(
+    titleElementId,
+    mapElementId,
+    containerElementId,
+    legendElementId,
+  ) {
     const ds = new DataService();
     this.dataService = ds;
     this.startYear = ds.getStartYear();
     this.endYear = ds.getEndYear();
     this.titleElement = document.getElementById(titleElementId);
     this.containerElement = document.getElementById(containerElementId);
-    this.mapDisplay = new MapDisplay(mapElementId);
+    this.mapDisplay = new MapDisplay(mapElementId, legendElementId);
   }
 
   initialize() {

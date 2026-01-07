@@ -11,6 +11,15 @@ export class CSSClasses {
   static get calendarMonth() {
     return "calendar-month";
   }
+  static get legendCaption() {
+    return "legend-caption";
+  }
+  static get legendItemLabel() {
+    return "legend-item-label";
+  }
+  static get legendItemText() {
+    return "legend-item-text";
+  }
 }
 
 export function toISOShortDate(date) {
