@@ -13,12 +13,14 @@ export class MapDisplay {
 
   initialize() {
     const svgDoc = this.map.contentDocument;
-    const adminUnits = svgDoc.querySelectorAll("path");
+    const adminUnits = MapUtils.getAllAdministrativeUnits(svgDoc);
     const adminUnitsColors = this.dataService.getAdminUnitsColorMap();
     adminUnits.forEach((unit) => {
       const postalCode = this.#getPostalCode(unit);
-      unit.setAttribute("postal_ro", postalCode);
-      unit.setAttribute("legend_id", this.legendId);
+      AdministrativeUnit.setPostalCode(unit, postalCode);
+      AdministrativeUnit.setLegendId(unit, this.legendId);
+      AdministrativeUnit.setEmphasis(unit, false);
+      AdministrativeUnit.deselect(unit);
 
       const color = adminUnitsColors.get(postalCode);
       if (color) {
@@ -29,22 +31,31 @@ export class MapDisplay {
     adminUnits.forEach((unit) => {
       unit.addEventListener("mousemove", (e) => {
         const target = e.target;
-        target.style.opacity = 0.7;
-        target.style.cursor = "pointer";
+        AdministrativeUnit.setEmphasis(target, true);
       });
 
       unit.addEventListener("mouseout", (e) => {
         const target = e.target;
-        target.style.cursor = "default";
-        target.style.opacity = 1;
+        if (!AdministrativeUnit.isSelected(target)) {
+          AdministrativeUnit.setEmphasis(target, false);
+        }
       });
 
       unit.addEventListener("click", function () {
-        const data = this.attributes;
-        const postalCode = data.postal_ro.value;
+        this.parentElement.childNodes.forEach((u) => {
+          AdministrativeUnit.deselect(u);
+          AdministrativeUnit.setEmphasis(u, false);
+        });
+
+        AdministrativeUnit.select(this);
+        AdministrativeUnit.setEmphasis(this, true);
+
+        const postalCode = AdministrativeUnit.getPostalCode(this);
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(postalCode);
-        const legendDisplay = new LegendDisplay(data.legend_id.value);
+        const legendDisplay = new LegendDisplay(
+          AdministrativeUnit.getLegendId(this),
+        );
         legendDisplay.initialize(postalCode);
       });
     });
@@ -58,5 +69,49 @@ export class MapDisplay {
       return normalizedPostalCode;
     }
     return postalCode;
+  }
+}
+
+class AdministrativeUnit {
+  static setEmphasis(unit, emphasis) {
+    unit.style.opacity = emphasis ? 1 : 0.8;
+    unit.style.strokeWidth = emphasis ? "3px" : "initial";
+    unit.style.cursor = emphasis ? "pointer" : "default";
+  }
+
+  static isSelected(unit) {
+    const selected = Boolean(unit.getAttribute("selected"));
+    console.log(`Is selected: ${selected}.`);
+    return selected;
+  }
+
+  static select(unit) {
+    unit.setAttribute("selected", true);
+  }
+
+  static deselect(unit) {
+    unit.removeAttribute("selected");
+  }
+
+  static getPostalCode(administrativeUnit) {
+    return administrativeUnit.attributes.postal_ro.value;
+  }
+
+  static setPostalCode(administrativeUnit, postalCode) {
+    administrativeUnit.setAttribute("postal_ro", postalCode);
+  }
+
+  static getLegendId(administrativeUnit) {
+    return administrativeUnit.attributes.legend_id.value;
+  }
+
+  static setLegendId(administrativeUnit, legendId) {
+    return administrativeUnit.setAttribute("legend_id", legendId);
+  }
+}
+
+class MapUtils {
+  static getAllAdministrativeUnits(svgDoc) {
+    return svgDoc.querySelectorAll("path");
   }
 }
