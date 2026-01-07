@@ -2,29 +2,32 @@
 <html lang="ro">
 
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="application-name" content="Calendar școlar">
+  <meta name="description" content="Calendarul anului școlar.">
+  <meta name="keywords" content="calendar școlar, calendar scolar, an școlar, an scolar, vacanțe, vacante">
 
-    <link rel="stylesheet" href="assets/style.css" />
+  <link rel="stylesheet" href="assets/style.css" />
 </head>
 
 <body>
-    <h1 id="calendar-title"></h1>
-    <object id="map" data="assets/RO.svg" type="image/svg+xml"></object>
-    <div id="info">Selectează un județ pentru informații.</div>
-    <div id="calendar">
-    </div>
+  <h1 id="calendar-title"></h1>
+  <object id="map" data="assets/RO.svg" type="image/svg+xml"></object>
+  <div id="info">Selectează un județ pentru informații.</div>
+  <div id="calendar">
+  </div>
 
-    <script type="module">
-      import {SchoolCalendar} from './assets/school-calendar.js';
+  <script type="module">
+    import { SchoolCalendar } from './assets/school-calendar.js';
 
+    document.addEventListener("DOMContentLoaded", function () {
+      const calendarDisplay = new SchoolCalendar("calendar-title", "map", "calendar", "info");
+      calendarDisplay.initialize();
+    });
 
-      document.addEventListener("DOMContentLoaded", function () {
-          const calendarDisplay=new SchoolCalendar("calendar-title", "map", "calendar", "info");
-          calendarDisplay.initialize();
-        });
-
-    </script>
+  </script>
 </body>
 
 </html>
