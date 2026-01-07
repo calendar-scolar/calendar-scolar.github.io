@@ -55,6 +55,11 @@ body{
     font-size: small;
 }
 
+.copyright{
+    text-align: center;
+    font-size: x-small;
+}
+
 @media screen and (width < 800px){
     #calendar-title{
         font-size: small;
