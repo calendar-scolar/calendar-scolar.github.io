@@ -1,4 +1,4 @@
-# [Calendar școlar]
+# Calendar școlar
 
 Calendar școlar++ / Romanian school calendar++.
 
