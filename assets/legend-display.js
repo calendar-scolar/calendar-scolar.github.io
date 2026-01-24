@@ -8,9 +8,9 @@ export class SchoolYearLegendDisplay {
     this.dataService = new DataService();
   }
 
-  initialize(postalCode) {
+  show(postalCode) {
     this.container.innerText = "";
-    const factory = new LegendTableFactory(
+    const factory = new LegendContentsFactory(
       this.container,
       this.#loadData(postalCode),
     );
@@ -33,44 +33,30 @@ export class SchoolYearLegendDisplay {
   }
 }
 
-class LegendTableFactory {
+class LegendContentsFactory {
   constructor(container, data) {
     this.container = container;
     this.data = data;
   }
 
   create(caption) {
-    const table = this.container.appendChild(document.createElement("table"));
-    const tableCaption = table.createCaption();
-    tableCaption.textContent = caption;
-    tableCaption.classList.add(CSSClasses.legendCaption);
+    const heading = this.container.appendChild(document.createElement("h2"));
+    heading.innerText = caption;
+    const list = this.container.appendChild(document.createElement("ul"));
 
-    const body = table.createTBody();
-    const data = this.data;
-    let tr = null;
-    for (let i = 0; i < data.length; i++) {
-      if (i % 4 === 0) {
-        tr = body.insertRow(-1);
+    for (const item of this.data) {
+      const li = list.appendChild(document.createElement("li"));
+      const span = li.appendChild(document.createElement("span"));
+      span.innerHTML = "&nbsp;";
+      const { name, color, cssClass } = item;
+      if (cssClass) {
+        span.classList.add(cssClass);
       }
-      this.#addLegendItem(tr, data[i]);
+      if (color) {
+        span.style.backgroundColor = color;
+      }
+      li.innerHTML += name;
     }
-  }
-
-  #addLegendItem(tr, props) {
-    const labelCell = tr.insertCell();
-    const { name, color, cssClass } = props;
-    labelCell.innerHTML = "&nbsp;";
-    labelCell.classList.add(CSSClasses.legendItemLabel);
-    if (cssClass) {
-      labelCell.classList.add(cssClass);
-    }
-    if (color) {
-      labelCell.style.backgroundColor = color;
-    }
-
-    const nameCell = tr.insertCell(-1);
-    nameCell.textContent = name;
-    nameCell.classList.add(CSSClasses.legendItemText);
   }
 }
 

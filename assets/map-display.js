@@ -64,7 +64,7 @@ export class MapDisplay {
         const legendDisplay = new SchoolYearLegendDisplay(
           AdministrativeUnit.getLegendId(this),
         );
-        legendDisplay.initialize(postalCode);
+        legendDisplay.show(postalCode);
       });
     });
 

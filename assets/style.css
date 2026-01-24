@@ -14,7 +14,29 @@ body{
     margin-top: 20px;
     padding: 10px;
     border: 1px solid #ccc;
-    min-height: 50px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    max-width: 60%;
+}
+
+#info h2{
+    font-size:medium;
+}
+
+#info ul{
+    display: flex;
+    list-style-type: none;
+    list-style-image: none;
+    flex-direction: row;
+    flex-wrap: wrap;
+    margin: 0px 10px;
+    padding-inline-start: 0px;
+    padding-inline-end: 0px;
+}
+
+#info ul li{
+    margin: 3px 10px;
 }
 
 #info-box {
@@ -42,6 +64,7 @@ body{
     justify-content: space-evenly;
     flex-wrap: wrap;
     width: 70%;
+    margin-top: 15px;
 }
 
 .calendar-month{
@@ -85,7 +108,7 @@ body{
 }
 
 .overview-legend{
-    font-size: smaller;
+    font-size: medium;
 }
 
 table.overview-legend tr:first-child,
@@ -93,7 +116,8 @@ table.overview-legend tr:last-child {
     font-weight: bold;
 }
 
-table.overview-legend td span{
+table.overview-legend td span,
+#info ul li span {
     width: 1rem;
     display: inline-block;
     margin-right: 0.5rem;
@@ -106,6 +130,15 @@ table.overview-legend td span{
 
     #info{
         font-size: small;
+        max-width: unset;
+    }
+
+    #info h2{
+        font-size: smaller;
+    }
+
+    .overview-legend{
+        font-size: smaller;
     }
 
     .legend-caption{
