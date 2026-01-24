@@ -2,7 +2,7 @@ import { CSSClasses } from "./calendar-utils.js";
 import { DataService } from "./data/data-services.js";
 import { LocalizationService } from "./localization.js";
 
-export class LegendDisplay {
+export class SchoolYearLegendDisplay {
   constructor(legendId) {
     this.container = document.getElementById(legendId);
     this.dataService = new DataService();

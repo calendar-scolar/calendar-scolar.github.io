@@ -1,4 +1,7 @@
 export class CSSClasses {
+  static get invisible() {
+    return "invisible";
+  }
   static get calendarDay() {
     return "calendar-day";
   }

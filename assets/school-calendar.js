@@ -16,7 +16,11 @@ export class SchoolCalendar {
     this.endYear = ds.getEndYear();
     this.titleElement = document.getElementById(titleElementId);
     this.containerElement = document.getElementById(containerElementId);
-    this.mapDisplay = new MapDisplay(mapElementId, legendElementId);
+    this.mapDisplay = new MapDisplay(
+      mapElementId,
+      legendElementId,
+      containerElementId,
+    );
   }
 
   initialize() {

@@ -17,7 +17,7 @@ body{
     min-height: 50px;
 }
 
-#calendar{
+.calendar-container{
     display: flex;
     flex-direction: row;
     justify-content: space-evenly;
@@ -58,6 +58,10 @@ body{
 .copyright{
     text-align: center;
     font-size: x-small;
+}
+
+.invisible{
+    display: none;
 }
 
 @media screen and (width < 800px){

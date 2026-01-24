@@ -1,13 +1,14 @@
 import { DataService } from "./data/data-services.js";
 import { CalendarDisplay } from "./calendar-display.js";
-import { LegendDisplay } from "./legend-display.js";
+import { SchoolYearLegendDisplay } from "./legend-display.js";
 
 const postalCodesMap = new Map([["BI", "B"]]);
 
 export class MapDisplay {
-  constructor(mapId, legendId) {
+  constructor(mapId, legendId, calendarContainerId) {
     this.map = document.getElementById(mapId);
     this.legendId = legendId;
+    this.calendarContainerId = calendarContainerId;
     this.dataService = new DataService();
   }
 
@@ -19,6 +20,7 @@ export class MapDisplay {
       const postalCode = this.#getPostalCode(unit);
       AdministrativeUnit.setPostalCode(unit, postalCode);
       AdministrativeUnit.setLegendId(unit, this.legendId);
+      AdministrativeUnit.setCalendarContainerId(unit, this.calendarContainerId);
       AdministrativeUnit.setEmphasis(unit, false);
       AdministrativeUnit.deselect(unit);
 
@@ -52,8 +54,11 @@ export class MapDisplay {
 
         const postalCode = AdministrativeUnit.getPostalCode(this);
         const calendarDisplay = new CalendarDisplay();
-        calendarDisplay.initialize(postalCode);
-        const legendDisplay = new LegendDisplay(
+        calendarDisplay.initialize(
+          AdministrativeUnit.getCalendarContainerId(this),
+          postalCode,
+        );
+        const legendDisplay = new SchoolYearLegendDisplay(
           AdministrativeUnit.getLegendId(this),
         );
         legendDisplay.initialize(postalCode);
@@ -105,7 +110,18 @@ class AdministrativeUnit {
   }
 
   static setLegendId(administrativeUnit, legendId) {
-    return administrativeUnit.setAttribute("legend_id", legendId);
+    administrativeUnit.setAttribute("legend_id", legendId);
+  }
+
+  static getCalendarContainerId(administrativeUnit) {
+    return administrativeUnit.attributes.calendar_container_id.value;
+  }
+
+  static setCalendarContainerId(administrativeUnit, calendarContainerId) {
+    administrativeUnit.setAttribute(
+      "calendar_container_id",
+      calendarContainerId,
+    );
   }
 }
 
