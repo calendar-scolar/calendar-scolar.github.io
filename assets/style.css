@@ -83,6 +83,21 @@ body{
     display: none;
 }
 
+.overview-legend{
+    font-size: smaller;
+}
+
+table.overview-legend tr:first-child,
+table.overview-legend tr:last-child {
+    font-weight: bold;
+}
+
+table.overview-legend td span{
+    width: 1rem;
+    display: inline-block;
+    margin-right: 0.5rem;
+}
+
 @media screen and (width < 800px){
     #calendar-title{
         font-size: small;

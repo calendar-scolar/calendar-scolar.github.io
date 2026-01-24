@@ -23,6 +23,14 @@ export class DataService {
     return this.getStartYear() + 1;
   }
 
+  getStartDate() {
+    return new Date(SchoolYear.start);
+  }
+
+  getEndDate() {
+    return new Date(SchoolYear.end.all);
+  }
+
   getAdministrativeUnitData(postalCode, dateFormat) {
     const data = this.#getSortedIntervals(postalCode).flatMap((period) => {
       var date = new Date(period.start);
@@ -36,6 +44,16 @@ export class DataService {
     });
     const map = new Map(data);
     return map;
+  }
+
+  getVacations() {
+    const vacations = SchoolYear.calendar
+      .filter((module) => {
+        const moduleType = module.type;
+        return moduleType === "vacation";
+      })
+      .toSorted((a, b) => a.start.localeCompare(b.start));
+    return vacations;
   }
 
   getAdministrativeUnitLegend(postalCode) {

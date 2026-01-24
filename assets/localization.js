@@ -12,6 +12,14 @@ export class LocalizationService {
     const name = localizedNames.get(postalCode);
     return `Calendarul școlar pentru ${type} ${name}`;
   }
+
+  static getFirstSchoolDay() {
+    return "Prima zi de studii";
+  }
+
+  static getLastSchoolDay() {
+    return "Ultima zi de studii";
+  }
 }
 
 const localizedNames = new Map([

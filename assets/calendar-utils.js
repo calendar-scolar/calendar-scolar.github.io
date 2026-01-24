@@ -23,6 +23,9 @@ export class CSSClasses {
   static get legendItemText() {
     return "legend-item-text";
   }
+  static get overviewLegend() {
+    return "overview-legend";
+  }
 }
 
 export function toISOShortDate(date) {

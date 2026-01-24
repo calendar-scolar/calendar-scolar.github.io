@@ -1,6 +1,9 @@
 import { DataService } from "./data/data-services.js";
 import { CalendarDisplay } from "./calendar-display.js";
-import { SchoolYearLegendDisplay } from "./legend-display.js";
+import {
+  SchoolYearLegendDisplay,
+  YearOverviewLegendDisplay,
+} from "./legend-display.js";
 
 const postalCodesMap = new Map([["BI", "B"]]);
 
@@ -64,6 +67,9 @@ export class MapDisplay {
         legendDisplay.initialize(postalCode);
       });
     });
+
+    const legendDisplay = new YearOverviewLegendDisplay(this.legendId);
+    legendDisplay.show();
   }
 
   #getPostalCode(adminUnit) {

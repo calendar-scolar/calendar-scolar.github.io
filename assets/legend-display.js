@@ -73,3 +73,95 @@ class LegendTableFactory {
     nameCell.classList.add(CSSClasses.legendItemText);
   }
 }
+
+export class YearOverviewLegendDisplay {
+  constructor(legendElementId) {
+    this.dataService = new DataService();
+    this.legendContainer = document.getElementById(legendElementId);
+  }
+
+  show() {
+    this.legendContainer.innerText = "";
+
+    const table = this.legendContainer.appendChild(
+      document.createElement("table"),
+    );
+    table.classList.add(CSSClasses.overviewLegend);
+
+    const tbody = table.createTBody();
+    this.#addSchoolDayRow(
+      tbody,
+      LocalizationService.getFirstSchoolDay(),
+      this.dataService.getStartDate(),
+    );
+    const coloredLines = this.#addVacations(
+      tbody,
+      this.dataService.getVacations(),
+    );
+    this.#addSchoolDayRow(
+      tbody,
+      LocalizationService.getLastSchoolDay(),
+      this.dataService.getEndDate(),
+    );
+    this.#formatColoredLines(coloredLines);
+  }
+
+  #formatColoredLines(coloredLines) {
+    const index = Math.floor(coloredLines.length / 2);
+    for (let i = 0; i < coloredLines.length; i++) {
+      if (i === index) {
+        continue;
+      }
+      const td = coloredLines[i].firstChild;
+      td.innerText = "";
+    }
+  }
+
+  #addVacations(tbody, vacations) {
+    var coloredLines = [];
+    for (const vacation of vacations) {
+      const { name, start, end, unitCodes } = vacation;
+      const color = unitCodes ? vacation.color : null;
+      const tr = this.#addVacationRow(
+        tbody,
+        name,
+        new Date(start),
+        new Date(end),
+        color,
+      );
+      if (color) {
+        coloredLines.push(tr);
+      }
+    }
+    return coloredLines;
+  }
+
+  #addVacationRow(tbody, text, startDate, endDate, color) {
+    const tr = tbody.insertRow();
+    const name = tr.insertCell();
+    name.innerText = text;
+    const value = tr.insertCell();
+    if (color) {
+      const span = value.appendChild(document.createElement("span"));
+      span.innerHTML = "&nbsp;";
+      span.style.backgroundColor = color;
+    }
+    value.innerHTML += `${this.#formatDate(startDate)} &ndash; ${this.#formatDate(endDate)}`;
+    return tr;
+  }
+
+  #addSchoolDayRow(tbody, text, date) {
+    const tr = tbody.insertRow();
+    const nameCell = tr.insertCell();
+    nameCell.innerText = text;
+    const valueCell = tr.insertCell();
+    valueCell.innerText = this.#formatDate(date);
+  }
+
+  #formatDate(date) {
+    const yyyy = date.getFullYear();
+    const MM = String(date.getMonth() + 1).padStart(2, "0");
+    const dd = String(date.getDate()).padStart(2, "0");
+    return `${dd}.${MM}.${yyyy}`;
+  }
+}
