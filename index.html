@@ -28,7 +28,7 @@
     </div>
   </div>
   <footer>
-    <div class="copyright">Copyright &copy; 2026 Petru Rebeja</div>
+    <div class="copyright">Copyright &copy; 2025</div>
   </footer>
   <script type="module">
     import { SchoolCalendar } from './assets/school-calendar.js';
@@ -38,6 +38,7 @@
       calendarDisplay.initialize();
     });
 
+    document.querySelector('.copyright').innerHTML = `Copyright &copy; ${new Date().getFullYear()}`;
   </script>
 </body>
 
