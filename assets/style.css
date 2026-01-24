@@ -63,7 +63,7 @@ body{
     flex-direction: row;
     justify-content: space-evenly;
     flex-wrap: wrap;
-    width: 70%;
+    width: 85%;
     margin-top: 15px;
 }
 
@@ -135,6 +135,10 @@ table.overview-legend td span,
 
     #info h2{
         font-size: smaller;
+    }
+
+    .calendar-container{
+        width: auto;
     }
 
     .overview-legend{
