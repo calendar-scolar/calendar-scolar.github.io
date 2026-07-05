@@ -1,5 +1,6 @@
 import { DataService } from "./data/data-services.js";
 import { CalendarDisplay } from "./calendar-display.js";
+import { LocalizationService } from "./localization.js";
 import {
   SchoolYearLegendDisplay,
   YearOverviewLegendDisplay,
@@ -8,10 +9,11 @@ import {
 const postalCodesMap = new Map([["BI", "B"]]);
 
 export class MapDisplay {
-  constructor(mapId, legendId, calendarContainerId) {
+  constructor(mapId, legendId, calendarContainerId, tooltipId) {
     this.map = document.getElementById(mapId);
     this.legendId = legendId;
     this.calendarContainerId = calendarContainerId;
+    this.tooltipId = tooltipId;
     this.dataService = new DataService();
   }
 
@@ -23,6 +25,7 @@ export class MapDisplay {
       const postalCode = this.#getPostalCode(unit);
       AdministrativeUnit.setPostalCode(unit, postalCode);
       AdministrativeUnit.setLegendId(unit, this.legendId);
+      AdministrativeUnit.setTooltipId(unit, this.tooltipId);
       AdministrativeUnit.setCalendarContainerId(unit, this.calendarContainerId);
       AdministrativeUnit.setEmphasis(unit, false);
       AdministrativeUnit.deselect(unit);
@@ -37,6 +40,22 @@ export class MapDisplay {
       unit.addEventListener("mousemove", (e) => {
         const target = e.target;
         AdministrativeUnit.setEmphasis(target, true);
+        const tooltip = document.getElementById(
+          AdministrativeUnit.getTooltipId(target),
+        );
+        tooltip.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+
+      unit.addEventListener("mouseenter", (e) => {
+        const target = e.target;
+        const tooltip = document.getElementById(
+          AdministrativeUnit.getTooltipId(target),
+        );
+        const postalCode = AdministrativeUnit.getPostalCode(target);
+        tooltip.innerHTML = `
+        <span>
+            ${LocalizationService.getLocalizedName(postalCode)}
+        </span>`;
       });
 
       unit.addEventListener("mouseout", (e) => {
@@ -44,6 +63,10 @@ export class MapDisplay {
         if (!AdministrativeUnit.isSelected(target)) {
           AdministrativeUnit.setEmphasis(target, false);
         }
+        const tooltip = document.getElementById(
+          AdministrativeUnit.getTooltipId(target),
+        );
+        tooltip.innerHTML = "";
       });
 
       unit.addEventListener("click", function () {
@@ -128,6 +151,14 @@ class AdministrativeUnit {
       "calendar_container_id",
       calendarContainerId,
     );
+  }
+
+  static getTooltipId(administrativeUnit) {
+    return administrativeUnit.attributes.tooltip_id.value;
+  }
+
+  static setTooltipId(administrativeUnit, tooltipId) {
+    administrativeUnit.setAttribute("tooltip_id", tooltipId);
   }
 }
 

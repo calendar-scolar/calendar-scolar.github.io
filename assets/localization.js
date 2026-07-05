@@ -20,6 +20,10 @@ export class LocalizationService {
   static getLastSchoolDay() {
     return "Ultima zi de studii";
   }
+
+  static getLocalizedName(postalCode) {
+    return localizedNames.get(postalCode);
+  }
 }
 
 const localizedNames = new Map([
