@@ -43,7 +43,14 @@ export class MapDisplay {
         const tooltip = document.getElementById(
           AdministrativeUnit.getTooltipId(target),
         );
-        tooltip.style.transform = `translate(${e.offsetX}px, ${e.offsetY}px)`;
+        tooltip.style.transform = `translate(${e.clientX}px, ${e.clientY}px)`;
+      });
+
+      unit.addEventListener("mouseenter", (e) => {
+        const target = e.target;
+        const tooltip = document.getElementById(
+          AdministrativeUnit.getTooltipId(target),
+        );
         const postalCode = AdministrativeUnit.getPostalCode(target);
         tooltip.innerHTML = `
         <span>
@@ -59,7 +66,7 @@ export class MapDisplay {
         const tooltip = document.getElementById(
           AdministrativeUnit.getTooltipId(target),
         );
-        // tooltip.innerHTML = "";
+        tooltip.innerHTML = "";
       });
 
       unit.addEventListener("click", function () {
