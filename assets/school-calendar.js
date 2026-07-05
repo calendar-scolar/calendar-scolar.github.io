@@ -9,6 +9,7 @@ export class SchoolCalendar {
     mapElementId,
     containerElementId,
     legendElementId,
+    tooltipId,
   ) {
     const ds = new DataService();
     this.dataService = ds;
@@ -20,6 +21,7 @@ export class SchoolCalendar {
       mapElementId,
       legendElementId,
       containerElementId,
+      tooltipId,
     );
   }
 
