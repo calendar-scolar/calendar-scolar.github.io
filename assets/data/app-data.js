@@ -72,7 +72,7 @@ export const SchoolYear = {
       end: "2027-02-26",
       name: "Vacanța de schi",
       unitCodes: "AB, AG, AR, BH, BV, DB, GR, HD, OT, PH, SM, SB, SJ, TR, VL",
-      color: "#ff3f35",
+      color: "#ffc930",
     },
     {
       type: "module",
@@ -96,7 +96,7 @@ export const SchoolYear = {
       end: "2027-03-05",
       name: "Vacanța de schi",
       unitCodes: "BC, BN, BT, BR, B, BZ, CT, CV, CL, GL, HR, IL, IS, IF, MM, MS, NT, SV, TL, VS, VN",
-      color: "#ffc930",
+      color: "#ff3f35",
     },
     {
       type: "module",
