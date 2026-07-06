@@ -77,7 +77,6 @@ export class MapDisplay {
 
         AdministrativeUnit.select(this);
         AdministrativeUnit.setEmphasis(this, true);
-
         const postalCode = AdministrativeUnit.getPostalCode(this);
         const calendarDisplay = new CalendarDisplay();
         calendarDisplay.initialize(
