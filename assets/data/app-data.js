@@ -39,7 +39,7 @@ export const SchoolYear = {
       start: "2027-01-11",
       end: "2027-02-12",
       name: "Modulul 3",
-      unitCodes: "CS, CJ, DJ, GJ, MH, TM",
+      unitCodes: "BN, CJ, DJ, GJ, SV",
       color: "#7f8c8d",
     },
     {
@@ -47,7 +47,7 @@ export const SchoolYear = {
       start: "2027-02-15",
       end: "2027-02-19",
       name: "Vacanța de schi",
-      unitCodes: "CS, CJ, DJ, GJ, MH, TM",
+      unitCodes: "BN, CJ, DJ, GJ, SV",
       color: "#454de1",
     },
     {
@@ -55,7 +55,7 @@ export const SchoolYear = {
       start: "2027-02-22",
       end: "2027-04-23",
       name: "Modulul 4",
-      unitCodes: "CS, CJ, DJ, GJ, MH, TM",
+      unitCodes: "BN, CJ, DJ, GJ, SV",
       color: "#55efc4",
     },
     {
@@ -63,7 +63,7 @@ export const SchoolYear = {
       start: "2027-01-11",
       end: "2027-02-19",
       name: "Modulul 3",
-      unitCodes: "AB, AG, AR, BH, BV, DB, GR, HD, OT, PH, SM, SB, SJ, TR, VL",
+      unitCodes: "AG, BC, BH, BT, BR, BV, B, CL, CT, CV, DB, GL, GR, HD, IS, IF, MM, MH, MS, NT, OT, PH, SJ, SM, SB, TR, TM, VS, VN",
       color: "#7f8c8d",
     },
     {
@@ -71,7 +71,7 @@ export const SchoolYear = {
       start: "2027-02-22",
       end: "2027-02-26",
       name: "Vacanța de schi",
-      unitCodes: "AB, AG, AR, BH, BV, DB, GR, HD, OT, PH, SM, SB, SJ, TR, VL",
+      unitCodes: "AG, BC, BH, BT, BR, BV, B, CL, CT, CV, DB, GL, GR, HD, IS, IF, MM, MH, MS, NT, OT, PH, SJ, SM, SB, TR, TM, VS, VN",
       color: "#ffc930",
     },
     {
@@ -79,7 +79,7 @@ export const SchoolYear = {
       start: "2027-03-01",
       end: "2027-04-23",
       name: "Modulul 4",
-      unitCodes: "AB, AG, AR, BH, BV, DB, GR, HD, OT, PH, SM, SB, SJ, TR, VL",
+      unitCodes: "AG, BC, BH, BT, BR, BV, B, CL, CT, CV, DB, GL, GR, HD, IS, IF, MM, MH, MS, NT, OT, PH, SJ, SM, SB, TR, TM, VS, VN",
       color: "#55efc4",
     },
     {
@@ -87,7 +87,7 @@ export const SchoolYear = {
       start: "2027-01-11",
       end: "2027-02-26",
       name: "Modulul 3",
-      unitCodes: "BC, BN, BT, BR, B, BZ, CT, CV, CL, GL, HR, IL, IS, IF, MM, MS, NT, SV, TL, VS, VN",
+      unitCodes: "AB, AR, BZ, CS, HR, IL, TL, VL",
       color: "#7f8c8d",
     },
     {
@@ -95,7 +95,7 @@ export const SchoolYear = {
       start: "2027-03-01",
       end: "2027-03-05",
       name: "Vacanța de schi",
-      unitCodes: "BC, BN, BT, BR, B, BZ, CT, CV, CL, GL, HR, IL, IS, IF, MM, MS, NT, SV, TL, VS, VN",
+        unitCodes: "AB, AR, BZ, CS, HR, IL, TL, VL",
       color: "#ff3f35",
     },
     {
@@ -103,7 +103,7 @@ export const SchoolYear = {
       start: "2027-03-08",
       end: "2027-04-23",
       name: "Modulul 4",
-      unitCodes: "BC, BN, BT, BR, B, BZ, CT, CV, CL, GL, HR, IL, IS, IF, MM, MS, NT, SV, TL, VS, VN",
+      unitCodes: "AB, AR, BZ, CS, HR, IL, TL, VL",
       color: "#55efc4",
     },
     {
